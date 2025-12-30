@@ -9,7 +9,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
 
-/* COMMON */
 .screen{
   position:fixed;inset:0;
   display:none;
@@ -31,12 +30,12 @@ button{
   cursor:pointer;
 }
 
-/* 🔒 SCREEN 1 */
+/* SCREEN 1 */
 #screen1{background-image:url('assets/intro.jpeg')}
 #screen1 h1{font-size:clamp(28px,6vw,42px);margin-bottom:12px}
 #screen1 p{opacity:.9;margin-bottom:28px}
 
-/* PANELS BASE */
+/* PANELS */
 .panels{
   display:flex;
   flex-direction:column;
@@ -166,16 +165,14 @@ button{
 
 <body>
 
-<audio id="bgm" src="assets/Ishqa-Ve.mp3" loop></audio>
+<audio id="bgm" src="assets/Ishqa-Ve.mp3"></audio>
 
-<!-- SCREEN 1 -->
 <section class="screen active" id="screen1">
   <h1>HAPPY NEW YEAR BEBO</h1>
   <p>Some moments deserve to be remembered forever…</p>
   <button onclick="go(2)">OPEN ✨</button>
 </section>
 
-<!-- SCREEN 2 -->
 <section class="screen" id="screen2">
   <div class="panels">
     <div class="panel"><div class="panel-inner">
@@ -194,7 +191,6 @@ button{
   <br><button onclick="go(3)">Next</button>
 </section>
 
-<!-- SCREEN 3 -->
 <section class="screen" id="screen3">
   <div class="letter">
     <h2>Happiest New Year Khadija Ji 🤍</h2>
@@ -212,7 +208,6 @@ button{
   <br><button onclick="go(4)">Next</button>
 </section>
 
-<!-- SCREEN 4 -->
 <section class="screen" id="screen4">
   <div class="panels">
     <div class="panel"><div class="panel-inner">
@@ -231,7 +226,6 @@ button{
   <br><button onclick="go(5)">Next</button>
 </section>
 
-<!-- SCREEN 5 -->
 <section class="screen" id="screen5">
   <div class="slideshow">
     <img src="assets/intro.jpeg">
@@ -253,6 +247,21 @@ button{
 <script>
 let current=1;
 const audio=document.getElementById("bgm");
+
+const START_TIME=3;
+const END_BUFFER=5;
+
+audio.addEventListener("loadedmetadata",()=>{
+  audio.currentTime=START_TIME;
+});
+
+audio.addEventListener("timeupdate",()=>{
+  if(audio.currentTime>=audio.duration-END_BUFFER){
+    audio.currentTime=START_TIME;
+    audio.play();
+  }
+});
+
 function go(n){
   document.getElementById("screen"+current).classList.remove("active");
   current=n;
