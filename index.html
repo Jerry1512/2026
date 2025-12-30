@@ -86,6 +86,16 @@ html,body{
   border-radius:24px;
   padding:26px;
   backdrop-filter:blur(6px);
+  max-height: 80vh;        /* prevents overflow */
+  overflow-y: auto;        /* scroll if needed */
+  text-align: left;
+}
+.letter::-webkit-scrollbar{
+  width: 6px;
+}
+.letter::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
 }
 .letter h2{
   font-size:clamp(22px,5vw,34px);
@@ -140,8 +150,8 @@ html,body{
 </div></div></div></div>
 
 <div class="panel" id="p2-2"><div class="panel-inner">
-<div class="face front"><img src="assets/ima2.jpeg"></div>
-<div class="face back"><img src="assets/ima2.jpeg">
+<div class="face front"><img src="assets/ima2.png"></div>
+<div class="face back"><img src="assets/ima2.png">
 <div class="panel-text">
 “With you, even the quiet moments feel special. You make time slow down, and somehow every year feels warmer just because you’re in it.”
 </div></div></div></div>
@@ -173,7 +183,7 @@ Some people don’t need to be close to be admired. Sometimes, simply watching s
 
 <!-- SCREEN 4 -->
 <section id="screen4" class="screen">
-<div class="bg" style="background-image:url('assets/SCREEN5.jpeg')"></div>
+<div class="bg" style="background-image:url('assets/SCREENS.jpeg')"></div>
 <div class="panel-container">
 
 <div class="panel" id="p4-1"><div class="panel-inner">
@@ -210,7 +220,7 @@ Some people don’t need to be close to be admired. Sometimes, simply watching s
 <section id="screen5" class="screen">
 <div class="slide show" style="background-image:url('assets/intro.jpeg')"></div>
 <div class="slide" style="background-image:url('assets/ima1.jpeg')"></div>
-<div class="slide" style="background-image:url('assets/ima2.jpeg')"></div>
+<div class="slide" style="background-image:url('assets/ima2.png')"></div>
 <div class="slide" style="background-image:url('assets/ima3.jpeg')"></div>
 
 <div class="wrap">
