@@ -1,131 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Year</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-body{
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+
+/* COMMON */
 .screen{
-  position:absolute;
-  inset:0;
+  position:fixed;inset:0;
   display:none;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
   text-align:center;
   background-size:cover;
   background-position:center;
 }
-.screen.active{display:flex;}
+.screen.active{display:flex}
 
 button{
-  padding:12px 28px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  cursor:pointer;
-  background:#fff;
+  padding:14px 40px;
+  border:none;border-radius:30px;
+  background:rgba(255,255,255,.85);
   color:#000;
+  font-weight:700;
+  cursor:pointer;
 }
 
-/* SCREEN 1 */
-#screen1{
-  background-image:url('assets/intro.jpeg');
-}
-#screen1 h1{
-  font-size:40px;
-  margin-bottom:20px;
-}
-#screen1 p{
-  font-size:18px;
-  margin-bottom:30px;
-}
+/* 🔒 SCREEN 1 (LOCKED) */
+#screen1{background-image:url('assets/intro.jpeg')}
+#screen1 h1{font-size:clamp(28px,6vw,42px);margin-bottom:12px}
+#screen1 p{opacity:.9;margin-bottom:28px}
 
-/* SCREEN 2 */
+/* 🧩 PANELS BASE */
 .panels{
   display:flex;
+  flex-direction:column;
   gap:20px;
-  perspective:1000px;
+  perspective:1200px;
 }
 .panel{
-  width:220px;
-  height:320px;
+  width:260px;height:160px;
 }
 .panel-inner{
-  width:100%;
-  height:100%;
+  width:100%;height:100%;
   position:relative;
   transform-style:preserve-3d;
-  transition:transform 1s;
+  transition:transform .9s ease;
 }
-.panel:hover .panel-inner{
-  transform:rotateY(180deg);
-}
+.panel:hover .panel-inner{transform:rotateY(180deg)}
 .face{
-  position:absolute;
-  inset:0;
+  position:absolute;inset:0;
   backface-visibility:hidden;
-}
-.face img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:20px;
-}
-.back{
-  transform:rotateY(180deg);
+  border-radius:22px;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:15px;
-  background:rgba(0,0,0,.6);
-  border-radius:20px;
 }
-.panel-text{
+.face img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.back{
+  transform:rotateY(180deg);
+  background:rgba(0,0,0,.65);
+  padding:18px;
+  line-height:1.5;
   font-size:14px;
-  line-height:1.4;
 }
 
-/* SCREEN 3 */
-#screen3{
-  background-image:url('assets/ima3.jpeg');
-}
+/* 🧩 SCREEN 2 */
+#screen2{background-image:url('assets/SCREEN3.jpeg')}
+
+/* 🧩 SCREEN 3 (LETTER) */
+#screen3{background-image:url('assets/ima3.jpeg')}
 .letter{
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.65);
   padding:30px;
-  border-radius:20px;
-  max-width:600px;
+  border-radius:24px;
+  max-width:720px;
   max-height:80vh;
   overflow-y:auto;
-}
-.letter p{
-  white-space:pre-wrap;
-  line-height:1.6;
+  line-height:1.7;
   text-align:left;
+  white-space:pre-wrap;
 }
 
-/* SCREEN 4 */
-#screen4{
-  background-image:url('assets/SCREEN5.jpeg');
+/* ✉️ SCREEN 4 */
+#screen4{background-image:url('assets/SCREEN5.jpeg')}
+.front-text{
+  position:absolute;
+  z-index:2;
+  font-weight:800;
+  text-shadow:0 6px 18px rgba(0,0,0,.9);
 }
 
-/* SCREEN 5 */
-.slides img{
-  width:220px;
-  margin:10px;
-  border-radius:16px;
+/* 🌌 SCREEN 5 */
+#screen5{overflow:hidden}
+.slideshow{
+  position:absolute;inset:0;z-index:-1;
+}
+.slideshow img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:slide 25s infinite;
+}
+.slideshow img:nth-child(1){animation-delay:0s}
+.slideshow img:nth-child(2){animation-delay:5s}
+.slideshow img:nth-child(3){animation-delay:10s}
+.slideshow img:nth-child(4){animation-delay:15s}
+.slideshow img:nth-child(5){animation-delay:20s}
+
+@keyframes slide{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
+}
+
+.lines p{
+  font-size:clamp(16px,4vw,22px);
+  opacity:0;
+  animation:lineFade 25s infinite;
+}
+.lines p:nth-child(1){animation-delay:0s}
+.lines p:nth-child(2){animation-delay:5s}
+.lines p:nth-child(3){animation-delay:10s}
+.lines p:nth-child(4){animation-delay:15s}
+.lines p:nth-child(5){animation-delay:20s}
+
+@keyframes lineFade{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
 }
 </style>
 </head>
@@ -135,26 +152,79 @@ button{
 <audio id="bgm" src="assets/Ishqa-Ve.mp3" loop></audio>
 
 <!-- SCREEN 1 -->
-<div class="screen active" id="screen1">
+<section class="screen active" id="screen1">
   <h1>HAPPY NEW YEAR BEBO</h1>
   <p>Some moments deserve to be remembered forever…</p>
-  <button onclick="next(2)">OPEN ✨</button>
-</div>
+  <button onclick="go(2)">OPEN ✨</button>
+</section>
 
 <!-- SCREEN 2 -->
-<div class="screen" id="screen2">
+<section class="screen" id="screen2">
+  <div class="panels">
+
+    <div class="panel">
+      <div class="panel-inner">
+        <div class="face front"><img src="assets/ima1.jpeg"></div>
+        <div class="face back">
+“A new year begins, but the feeling stays the same  
+you are still the place my heart feels most at home.”
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-inner">
+        <div class="face front"><img src="assets/ima2.png"></div>
+        <div class="face back">
+“With you, even the quiet moments feel special.  
+You make time slow down,  
+and somehow every year feels warmer just because you’re in it.”
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-inner">
+        <div class="face front"><img src="assets/ima3.jpeg"></div>
+        <div class="face back">
+“This new year, my only wish is simple —  
+that you stay happy, stay healthy,  
+and always know how deeply you are loved.”
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br><button onclick="go(3)">Next</button>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+  <div class="letter">
+A new year, and quiet wishes for you.
+
+As this new year begins, I hope it brings you moments that feel light and kind. From a distance, it’s easy to see the warmth you carry — the way your presence softens spaces and makes ordinary days feel a little brighter. You have a calm strength about you, and it shows in the way you move through life with grace.
+
+This year, I wish you happiness that comes naturally, health that stays with you through every season, and peace that settles gently in your heart. May your days be filled with reasons to smile, with people who value you, and with moments that remind you how special you truly are.
+
+Some people don’t need to be close to be admired. Sometimes, simply watching someone grow, smile, and live fully is enough. As the year changes, these wishes remain the same — quiet, sincere, and meant only for you.
+  </div>
+  <br><button onclick="go(4)">Next</button>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
   <div class="panels">
 
     <div class="panel">
       <div class="panel-inner">
         <div class="face front">
-          <img src="assets/ima1.jpeg">
+          <img src="assets/ONE.png">
+          <div class="front-text">Things I Admire About You</div>
         </div>
         <div class="face back">
-          <div class="panel-text">
-            A new year begins, but the feeling stays the same —  
-            you are still the place my heart feels most at home.
-          </div>
+“I admire the way you stay kind in a world that isn’t always gentle.  
+Your warmth feels effortless, and the way you carry yourself leaves a quiet impression that lasts.”
         </div>
       </div>
     </div>
@@ -162,13 +232,12 @@ button{
     <div class="panel">
       <div class="panel-inner">
         <div class="face front">
-          <img src="assets/ima2.png">
+          <img src="assets/TWO.png">
+          <div class="front-text">Wishes for Your Future</div>
         </div>
         <div class="face back">
-          <div class="panel-text">
-            With you, even the quiet moments feel special.  
-            Somehow every year feels warmer just because you’re in it.
-          </div>
+“I hope the years ahead bring you peace, growth, and moments that feel right.  
+May you always find reasons to smile, and paths that lead you where you’re meant to be.”
         </div>
       </div>
     </div>
@@ -176,77 +245,48 @@ button{
     <div class="panel">
       <div class="panel-inner">
         <div class="face front">
-          <img src="assets/ima3.jpeg">
+          <img src="assets/THREE.png">
+          <div class="front-text">Lessons You Inspire</div>
         </div>
         <div class="face back">
-          <div class="panel-text">
-            Some people become memories,  
-            some become lessons —  
-            but a few quietly become forever.
-          </div>
+“You remind people that softness is not weakness,  
+that calm can be powerful,  
+and that being genuine is enough.”
         </div>
       </div>
     </div>
 
   </div>
-  <br>
-  <button onclick="next(3)">Next</button>
-</div>
-
-<!-- SCREEN 3 -->
-<div class="screen" id="screen3">
-  <div class="letter">
-sometimes i wonder if it was a mistake  
-loving someone so hard  
-and getting so badly hurt  
-in the process  
-
-but other times i know  
-that i would never have known  
-what love truly was  
-if i didn’t  
-
-there is beauty  
-in loving someone  
-even if they don’t  
-love you back the same way  
-
-and for that,  
-i regret nothing.  
-
-— yours, chirag 🤍
-  </div>
-  <br>
-  <button onclick="next(4)">Next</button>
-</div>
-
-<!-- SCREEN 4 -->
-<div class="screen" id="screen4">
-  <h1>May this year be kind to you ✨</h1>
-  <p>May happiness find you gently.</p>
-  <button onclick="next(5)">Next</button>
-</div>
+  <br><button onclick="go(5)">Next</button>
+</section>
 
 <!-- SCREEN 5 -->
-<div class="screen" id="screen5">
-  <div class="slides">
+<section class="screen" id="screen5">
+  <div class="slideshow">
     <img src="assets/intro.jpeg">
     <img src="assets/ima1.jpeg">
     <img src="assets/ima2.png">
     <img src="assets/ima3.jpeg">
+    <img src="assets/SCREEN5.jpeg">
   </div>
-  <p>Happy New Year 🤍</p>
-</div>
+
+  <div class="lines">
+    <p>sometimes i wonder if it was a mistake<br>loving someone so hard<br>and getting so badly hurt<br>in the process</p>
+    <p>but other times i know<br>that i would never have known<br>what love truly was<br>if i didn’t</p>
+    <p>there is beauty<br>in loving someone<br>even if they don’t<br>love you back the same way</p>
+    <p>and for that,<br>i regret nothing.</p>
+    <p>yours, chirag 🤍</p>
+  </div>
+</section>
 
 <script>
-let current = 1;
-const audio = document.getElementById("bgm");
-
-function next(n){
+let current=1;
+const audio=document.getElementById("bgm");
+function go(n){
   document.getElementById("screen"+current).classList.remove("active");
-  current = n;
+  current=n;
   document.getElementById("screen"+current).classList.add("active");
-  audio.play();
+  audio.play().catch(()=>{});
 }
 </script>
 
