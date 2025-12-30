@@ -36,7 +36,7 @@ button{
 #screen1 h1{font-size:clamp(28px,6vw,42px);margin-bottom:12px}
 #screen1 p{opacity:.9;margin-bottom:28px}
 
-/* 🧩 PANELS BASE */
+/* PANELS BASE */
 .panels{
   display:flex;
   flex-direction:column;
@@ -71,38 +71,42 @@ button{
   font-size:clamp(14px,2.8vw,18px);
 }
 
-/* 🧩 SCREEN 2 */
+/* SCREEN 2 */
 #screen2{background-image:url('assets/SCREEN3.jpeg')}
 
-/* 🧩 SCREEN 3 */
+/* SCREEN 3 */
 #screen3{background-image:url('assets/ima3.jpeg')}
 .letter{
   background:rgba(0,0,0,.65);
-  padding:36px;
+  padding:40px;
   border-radius:26px;
-  max-width:820px;
-  line-height:1.7;
+  max-width:850px;
+  line-height:1.75;
   font-size:clamp(15px,2.6vw,18px);
   text-align:left;
 }
 .letter h2{
-  font-size:clamp(20px,4vw,28px);
-  font-weight:800;
-  margin-bottom:18px;
+  font-size:clamp(22px,4.5vw,30px);
+  font-weight:900;
+  margin-bottom:24px;
   text-align:center;
 }
 
-/* ✉️ SCREEN 4 */
+/* SCREEN 4 */
 #screen4{background-image:url('assets/SCREEN5.jpeg')}
 .front-text{
   position:absolute;
-  bottom:18px;
-  font-weight:800;
-  font-size:clamp(14px,2.8vw,18px);
-  text-shadow:0 6px 18px rgba(0,0,0,.9);
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:clamp(16px,3vw,20px);
+  text-shadow:0 6px 20px rgba(0,0,0,.9);
+  background:rgba(0,0,0,.25);
 }
 
-/* 🌌 SCREEN 5 */
+/* SCREEN 5 */
 #screen5{overflow:hidden}
 .slideshow{position:absolute;inset:0;z-index:-2}
 .slideshow img{
@@ -140,14 +144,7 @@ button{
   padding:14px 22px;
   border-radius:18px;
   margin:10px 0;
-  background:rgba(255,255,255,.6);
-  text-shadow:
-    0 0 6px rgba(255,255,255,.9),
-    0 0 14px rgba(255,255,255,.7),
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+  background:rgba(255,255,255,.65);
   opacity:0;
   animation:lineFade 25s infinite;
 }
