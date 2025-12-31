@@ -1,73 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NICKY25</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Year</title>
 
 <style>
-*{box-sizing:border-box}
-html,body{
-  margin:0;height:100%;width:100%;
-  background:#031226;color:#fff;
-  font-family:Poppins,Arial;
-  overflow:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+
 .screen{
   position:fixed;inset:0;
-  display:flex;align-items:center;justify-content:center;
+  display:none;
   flex-direction:column;
-  opacity:0;pointer-events:none;
-  transition:opacity .7s ease;
-}
-.screen.active{opacity:1;pointer-events:auto}
-
-/* backgrounds */
-.bg{
-  position:absolute;inset:0;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
   background-size:cover;
   background-position:center;
-  filter:brightness(.55);
 }
+.screen.active{display:flex}
 
-.wrap{
-  position:relative;
-  z-index:5;
-  width:92%;
-  max-width:900px;
-  text-align:center;
+button{
+  padding:14px 40px;
+  border:none;border-radius:30px;
+  background:rgba(255,255,255,.85);
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
 }
 
 /* SCREEN 1 */
-.title1{font-size:clamp(24px,6vw,38px);font-weight:900}
-.subtitle1{margin-top:10px}
-.tap-btn{
-  margin-top:22px;padding:14px 40px;
-  border-radius:30px;border:none;
-  background:rgba(255,255,255,.15);
-  color:#fff;font-weight:800;
-}
+#screen1{background-image:url('assets/intro.jpeg')}
+#screen1 h1{font-size:clamp(28px,6vw,42px);margin-bottom:12px}
+#screen1 p{opacity:.9;margin-bottom:28px}
 
 /* PANELS */
-.panel-container{
-  width:92%;height:86%;
+.panels{
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
-  gap:18px;
+  gap:22px;
+  width:90%;
+  max-width:900px;
+  perspective:1200px;
 }
-.panel{
-  height:30%;
-  border-radius:26px;
-  perspective:1400px;
-  cursor:pointer;
-}
+.panel{width:100%;height:22vh}
 .panel-inner{
   width:100%;height:100%;
+  position:relative;
   transform-style:preserve-3d;
-  transition:transform .75s ease;
+  transition:transform .9s ease;
 }
-.panel.flipped .panel-inner{transform:rotateY(180deg)}
+.panel:hover .panel-inner{transform:rotateY(180deg)}
 .face{
   position:absolute;inset:0;
   backface-visibility:hidden;
@@ -77,219 +61,226 @@ html,body{
   align-items:center;
   justify-content:center;
 }
-.face img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.back{transform:rotateY(180deg)}
-.back img{filter:blur(8px) brightness(.6)}
-.panel-text{
-  position:absolute;
-  z-index:2;
-  padding:22px;
-  font-size:clamp(14px,4vw,18px);
+.face img{width:100%;height:100%;object-fit:cover}
+.back{
+  transform:rotateY(180deg);
+  background:rgba(0,0,0,.65);
+  padding:24px;
   line-height:1.6;
-  text-shadow:0 6px 20px rgba(0,0,0,.9);
+  font-size:clamp(14px,2.8vw,18px);
 }
 
+/* SCREEN 2 */
+#screen2{background-image:url('assets/SCREEN3.jpeg')}
+
 /* SCREEN 3 */
+#screen3{background-image:url('assets/ima3.jpeg')}
 .letter{
-  background:rgba(0,0,0,.55);
-  border-radius:24px;
-  padding:28px;
-  backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.65);
+  padding:40px;
+  border-radius:26px;
+  max-width:850px;
+  line-height:1.75;
+  font-size:clamp(15px,2.6vw,18px);
+  text-align:left;
 }
 .letter h2{
-  font-size:clamp(22px,5vw,34px);
-  margin:0 0 18px;
+  font-size:clamp(22px,4.5vw,30px);
+  font-weight:900;
+  margin-bottom:24px;
+  text-align:center;
 }
-.letter p{
-  white-space:pre-wrap;
-  line-height:1.65;
-  text-align:left;
+
+/* SCREEN 4 */
+#screen4{background-image:url('assets/SCREEN5.jpeg')}
+.front-text{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:clamp(16px,3vw,20px);
+  text-shadow:0 6px 20px rgba(0,0,0,.9);
+  background:rgba(0,0,0,.25);
 }
 
 /* SCREEN 5 */
-.slide{
+#screen5{overflow:hidden}
+.slideshow{position:absolute;inset:0;z-index:-2}
+.slideshow img{
   position:absolute;inset:0;
-  background-size:cover;
-  background-position:center;
+  width:100%;height:100%;
+  object-fit:cover;
   opacity:0;
-  transition:opacity 1s ease;
+  animation:slide 28s infinite;
 }
-.slide.show{opacity:1}
+
+/* ORIGINAL SLIDES (unchanged timing) */
+.slideshow img:nth-child(1){animation-delay:0s}
+.slideshow img:nth-child(2){animation-delay:5s}
+.slideshow img:nth-child(3){animation-delay:10s}
+.slideshow img:nth-child(4){animation-delay:15s}
+.slideshow img:nth-child(5){animation-delay:20s}
+
+/* NEW IMAGE — FOUR.png (3 seconds only) */
+.slideshow img:nth-child(6){
+  animation:slideShort 28s infinite;
+  animation-delay:25s;
+}
+
+@keyframes slide{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
+}
+
+/* 3-second visibility */
+@keyframes slideShort{
+  0%{opacity:0}
+  10%{opacity:1}
+  20%{opacity:1}
+  30%{opacity:0}
+  100%{opacity:0}
+}
 
 .overlay{
   position:absolute;inset:0;
-  background:rgba(255,255,255,.35);
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
+  z-index:-1;
 }
 
-.final-line{
-  font-size:clamp(18px,4.5vw,30px);
+.lines p{
+  font-size:clamp(16px,4vw,22px);
   font-weight:800;
-  opacity:0;
-  transform:translateY(14px);
-  transition:opacity 1s ease, transform 1s ease;
-  margin:14px 0;
   color:#000;
+  padding:14px 22px;
+  border-radius:18px;
+  margin:10px 0;
+  background:rgba(255,255,255,.65);
+  opacity:0;
+  animation:lineFade 28s infinite;
+}
+.lines p:nth-child(1){animation-delay:0s}
+.lines p:nth-child(2){animation-delay:5s}
+.lines p:nth-child(3){animation-delay:10s}
+.lines p:nth-child(4){animation-delay:15s}
+.lines p:nth-child(5){animation-delay:20s}
+
+@keyframes lineFade{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgm" src="assets/Ishqa-Ve.mp3" loop></audio>
+<audio id="bgm" src="assets/Ishqa-Ve.mp3"></audio>
 
-<!-- SCREEN 1 -->
-<section id="screen1" class="screen active">
-  <div class="bg" style="background-image:url('assets/intro.jpeg')"></div>
-  <div class="wrap">
-    <div class="title1">HAPPY NEW YEAR BEBO</div>
-    <div class="subtitle1">Some moments deserve to be remembered forever…</div>
-    <button class="tap-btn" onclick="start()">OPEN ✨</button>
+<section class="screen active" id="screen1">
+  <h1>HAPPY NEW YEAR BEBO</h1>
+  <p>Some moments deserve to be remembered forever…</p>
+  <button onclick="go(2)">OPEN ✨</button>
+</section>
+
+<section class="screen" id="screen2">
+  <div class="panels">
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/ima1.jpeg"></div>
+      <div class="face back">A new year begins, but the feeling stays the same — you are still the place my heart feels most at home.</div>
+    </div></div>
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/ima2.png"></div>
+      <div class="face back">With you, even the quiet moments feel special. You make time slow down, and somehow every year feels warmer just because you’re in it.</div>
+    </div></div>
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/ima3.jpeg"></div>
+      <div class="face back">This new year, my only wish is simple — that you stay happy, stay healthy, and always know how deeply you are loved.</div>
+    </div></div>
+  </div>
+  <br><button onclick="go(3)">Next</button>
+</section>
+
+<section class="screen" id="screen3">
+  <div class="letter">
+    <h2>Happiest New Year Khadija Ji 🤍</h2>
+    As this new year begins, I hope it brings you moments that feel light and kind. From a distance, it’s easy to see the warmth you carry — the way your presence softens spaces and makes ordinary days feel a little brighter.
+    <br><br>
+    This year, I wish you happiness that comes naturally, health that stays with you through every season, and peace that settles gently in your heart.
+    <br><br>
+    Some people don’t need to be close to be admired. Sometimes, simply watching someone grow, smile, and live fully is enough.
+  </div>
+  <br><button onclick="go(4)">Next</button>
+</section>
+
+<section class="screen" id="screen4">
+  <div class="panels">
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/ONE.png"><div class="front-text">Things I Admire About You</div></div>
+      <div class="face back">I admire the way you stay kind in a world that isn’t always gentle.</div>
+    </div></div>
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/TWO.png"><div class="front-text">Wishes for Your Future</div></div>
+      <div class="face back">I hope the years ahead bring you peace, growth, and moments that feel right.</div>
+    </div></div>
+    <div class="panel"><div class="panel-inner">
+      <div class="face front"><img src="assets/THREE.png"><div class="front-text">Lessons You Inspire</div></div>
+      <div class="face back">You remind people that softness is not weakness, and that being genuine is enough.</div>
+    </div></div>
+  </div>
+  <br><button onclick="go(5)">Next</button>
+</section>
+
+<section class="screen" id="screen5">
+  <div class="slideshow">
+    <img src="assets/intro.jpeg">
+    <img src="assets/ima1.jpeg">
+    <img src="assets/ima2.png">
+    <img src="assets/ima3.jpeg">
+    <img src="assets/SCREEN5.jpeg">
+    <img src="assets/FOUR.png">
+  </div>
+  <div class="overlay"></div>
+  <div class="lines">
+    <p>sometimes i wonder if it was a mistake<br>loving someone so hard<br>and getting so badly hurt<br>in the process</p>
+    <p>but other times i know<br>that i would never have known<br>what love truly was<br>if i didn’t</p>
+    <p>there is beauty<br>in loving someone<br>even if they don’t<br>love you back the same way</p>
+    <p>and for that,<br>i regret nothing.</p>
+    <p>yours, chirag 🤍</p>
   </div>
 </section>
 
-<!-- SCREEN 2 -->
-<section id="screen2" class="screen">
-<div class="bg" style="background-image:url('assets/SCREEN3.jpeg')"></div>
-<div class="panel-container">
-
-<div class="panel" id="p2-1"><div class="panel-inner">
-<div class="face front"><img src="assets/ima1.jpeg"></div>
-<div class="face back"><img src="assets/ima1.jpeg">
-<div class="panel-text">“A new year begins, but the feeling stays the same — you are still the place my heart feels most at home.”</div>
-</div></div></div>
-
-<div class="panel" id="p2-2"><div class="panel-inner">
-<div class="face front"><img src="assets/ima2.png"></div>
-<div class="face back"><img src="assets/ima2.png">
-<div class="panel-text">“With you, even the quiet moments feel special. You make time slow down.”</div>
-</div></div></div>
-
-<div class="panel" id="p2-3"><div class="panel-inner">
-<div class="face front"><img src="assets/ima3.jpeg"></div>
-<div class="face back"><img src="assets/ima3.jpeg">
-<div class="panel-text">“This new year, my only wish is simple — that you stay happy and healthy.”</div>
-</div></div></div>
-
-</div>
-</section>
-
-<!-- SCREEN 3 -->
-<section id="screen3" class="screen">
-<div class="bg" style="background-image:url('assets/ima3.jpeg')"></div>
-<div class="wrap letter">
-<h2>Happiest New Year Khadija ji</h2>
-<p>
-As this new year begins, I hope it brings you moments that feel light and kind.
-From a distance, it’s easy to see the warmth you carry — the way your presence
-softens spaces and makes ordinary days feel brighter.
-
-This year, I wish you happiness that comes naturally, health that stays with you,
-and peace that settles gently in your heart.
-
-Sometimes, simply wishing someone well is enough.
-</p>
-</div>
-</section>
-
-<!-- SCREEN 4 -->
-<section id="screen4" class="screen">
-<div class="bg" style="background-image:url('assets/SCREEN5.jpeg')"></div>
-<div class="panel-container">
-
-<div class="panel" id="p4-1"><div class="panel-inner">
-<div class="face front"><img src="assets/ONE.jpeg"><div class="panel-text">Things I Admire About You</div></div>
-<div class="face back"><img src="assets/ONE.jpeg"><div class="panel-text">Your kindness stays gentle even when the world isn’t.</div></div>
-</div></div>
-
-<div class="panel" id="p4-2"><div class="panel-inner">
-<div class="face front"><img src="assets/TWO.jpeg"><div class="panel-text">Wishes for Your Future</div></div>
-<div class="face back"><img src="assets/TWO.jpeg"><div class="panel-text">May life meet you with ease and quiet joy.</div></div>
-</div></div>
-
-<div class="panel" id="p4-3"><div class="panel-inner">
-<div class="face front"><img src="assets/THREE.jpeg"><div class="panel-text">Lessons You Inspire</div></div>
-<div class="face back"><img src="assets/THREE.jpeg"><div class="panel-text">Softness can still be strength.</div></div>
-</div></div>
-
-</div>
-</section>
-
-<!-- SCREEN 5 -->
-<section id="screen5" class="screen">
-<div class="overlay"></div>
-
-<div class="slide show" data-time="2500" style="background-image:url('assets/intro.jpeg')"></div>
-<div class="slide" data-time="2500" style="background-image:url('assets/ima1.jpeg')"></div>
-<div class="slide" data-time="2500" style="background-image:url('assets/ima2.png')"></div>
-<div class="slide" data-time="2500" style="background-image:url('assets/ima3.jpeg')"></div>
-<div class="slide" data-time="3000" style="background-image:url('assets/FOUR.png')"></div>
-
-<div class="wrap">
-<div class="final-line">sometimes i wonder if it was a mistake</div>
-<div class="final-line">but other times i know</div>
-<div class="final-line">there is beauty in loving someone</div>
-<div class="final-line">and for that, i regret nothing.</div>
-<div class="final-line">yours, chirag 🤍</div>
-</div>
-</section>
-
 <script>
-const bgm=document.getElementById('bgm');
+let current=1;
+const audio=document.getElementById("bgm");
 
-function show(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-}
+const START_TIME=3;
+const END_BUFFER=5;
 
-function start(){bgm.play().catch(()=>{});show('screen2');}
-
-function setup(panels,next,delay){
-let c=0;
-panels.forEach(p=>{
-p.onclick=()=>{
-if(p.classList.contains('flipped'))return;
-p.classList.add('flipped');c++;
-if(c===panels.length){setTimeout(()=>show(next),delay);}
-};
+audio.addEventListener("loadedmetadata",()=>{
+  audio.currentTime=START_TIME;
 });
-}
 
-setup([p2-1,p2-2,p2-3],'screen3',4000);
-setup([p4-1,p4-2,p4-3],'screen5',3000);
-screen3.onclick=()=>show('screen4');
-
-/* slideshow */
-let slides=[...document.querySelectorAll('.slide')],si=0;
-(function next(){
-let cur=slides[si],t=+cur.dataset.time;
-setTimeout(()=>{
-cur.classList.remove('show');
-si=(si+1)%slides.length;
-slides[si].classList.add('show');
-next();
-},t);
-})();
-
-/* text fade loop */
-let lines=[...document.querySelectorAll('.final-line')];
-function textLoop(){
-let d=0;
-lines.forEach(l=>{
-setTimeout(()=>{l.style.opacity=1;l.style.transform='translateY(0)'},d);
-d+=1400;
+audio.addEventListener("timeupdate",()=>{
+  if(audio.currentTime>=audio.duration-END_BUFFER){
+    audio.currentTime=START_TIME;
+    audio.play();
+  }
 });
-setTimeout(()=>{
-lines.forEach((l,i)=>{
-setTimeout(()=>l.style.opacity=0,i*600);
-});
-},d+1200);
+
+function go(n){
+  document.getElementById("screen"+current).classList.remove("active");
+  current=n;
+  document.getElementById("screen"+current).classList.add("active");
+  audio.play().catch(()=>{});
 }
-setInterval(textLoop,12000);
-textLoop();
 </script>
 
 </body>
