@@ -21,12 +21,22 @@ html,body{
   transition:opacity .7s ease;
 }
 .screen.active{opacity:1;pointer-events:auto}
+
+/* backgrounds */
 .bg{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  filter:brightness(.9);
+  background-size:cover;
+  background-position:center;
+  filter:brightness(.55);
 }
-.wrap{position:relative;z-index:5;width:92%;max-width:900px;text-align:center}
+
+.wrap{
+  position:relative;
+  z-index:5;
+  width:92%;
+  max-width:900px;
+  text-align:center;
+}
 
 /* SCREEN 1 */
 .title1{font-size:clamp(24px,6vw,38px);font-weight:900}
@@ -41,18 +51,21 @@ html,body{
 /* PANELS */
 .panel-container{
   width:92%;height:86%;
-  display:flex;flex-direction:column;
-  gap:18px;justify-content:space-between;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:18px;
 }
 .panel{
-  height:30%;border-radius:26px;
-  perspective:1400px;cursor:pointer;
+  height:30%;
+  border-radius:26px;
+  perspective:1400px;
+  cursor:pointer;
 }
 .panel-inner{
   width:100%;height:100%;
   transform-style:preserve-3d;
   transition:transform .75s ease;
-  border-radius:26px;
 }
 .panel.flipped .panel-inner{transform:rotateY(180deg)}
 .face{
@@ -60,17 +73,17 @@ html,body{
   backface-visibility:hidden;
   border-radius:26px;
   overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.front img,.back img{
-  width:100%;height:100%;object-fit:cover;
+.face img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
-.back{
-  transform:rotateY(180deg);
-}
-.back img{
-  filter:blur(10px) brightness(.7);
-}
+.back{transform:rotateY(180deg)}
+.back img{filter:blur(8px) brightness(.6)}
 .panel-text{
   position:absolute;
   z-index:2;
@@ -82,38 +95,44 @@ html,body{
 
 /* SCREEN 3 */
 .letter{
-  background:rgba(255,255,255,.08);
+  background:rgba(0,0,0,.55);
   border-radius:24px;
-  padding:26px;
+  padding:28px;
   backdrop-filter:blur(6px);
 }
 .letter h2{
   font-size:clamp(22px,5vw,34px);
-  margin-top:0;text-align:center;
+  margin:0 0 18px;
 }
 .letter p{
   white-space:pre-wrap;
-  line-height:1.6;
+  line-height:1.65;
   text-align:left;
 }
 
 /* SCREEN 5 */
 .slide{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  opacity:0;transition:opacity 1s ease;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1s ease;
 }
 .slide.show{opacity:1}
-.final-line{
-  font-size:clamp(18px,4.5vw,30px);
-  font-weight:800;
-  opacity:0;transform:translateY(12px);
-  transition:.9s;margin:14px 0;
-  color:#000;
-}
+
 .overlay{
   position:absolute;inset:0;
   background:rgba(255,255,255,.35);
+}
+
+.final-line{
+  font-size:clamp(18px,4.5vw,30px);
+  font-weight:800;
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity 1s ease, transform 1s ease;
+  margin:14px 0;
+  color:#000;
 }
 </style>
 </head>
@@ -140,28 +159,20 @@ html,body{
 <div class="panel" id="p2-1"><div class="panel-inner">
 <div class="face front"><img src="assets/ima1.jpeg"></div>
 <div class="face back"><img src="assets/ima1.jpeg">
-<div class="panel-text">
-“A new year begins, but the feeling stays the same —
-you are still the place my heart feels most at home.”
-</div></div></div></div>
+<div class="panel-text">“A new year begins, but the feeling stays the same — you are still the place my heart feels most at home.”</div>
+</div></div></div>
 
 <div class="panel" id="p2-2"><div class="panel-inner">
 <div class="face front"><img src="assets/ima2.png"></div>
 <div class="face back"><img src="assets/ima2.png">
-<div class="panel-text">
-“With you, even the quiet moments feel special.
-You make time slow down,
-and somehow every year feels warmer just because you’re in it.”
-</div></div></div></div>
+<div class="panel-text">“With you, even the quiet moments feel special. You make time slow down.”</div>
+</div></div></div>
 
 <div class="panel" id="p2-3"><div class="panel-inner">
 <div class="face front"><img src="assets/ima3.jpeg"></div>
 <div class="face back"><img src="assets/ima3.jpeg">
-<div class="panel-text">
-“This new year, my only wish is simple —
-that you stay happy, stay healthy,
-and always know how deeply you are loved.”
-</div></div></div></div>
+<div class="panel-text">“This new year, my only wish is simple — that you stay happy and healthy.”</div>
+</div></div></div>
 
 </div>
 </section>
@@ -174,12 +185,11 @@ and always know how deeply you are loved.”
 <p>
 As this new year begins, I hope it brings you moments that feel light and kind.
 From a distance, it’s easy to see the warmth you carry — the way your presence
-softens spaces and makes ordinary days feel a little brighter.
+softens spaces and makes ordinary days feel brighter.
 
-This year, I wish you happiness that comes naturally, health that stays with you
-through every season, and peace that settles gently in your heart.
+This year, I wish you happiness that comes naturally, health that stays with you,
+and peace that settles gently in your heart.
 
-Some people don’t need to be close to be admired.
 Sometimes, simply wishing someone well is enough.
 </p>
 </div>
@@ -192,21 +202,18 @@ Sometimes, simply wishing someone well is enough.
 
 <div class="panel" id="p4-1"><div class="panel-inner">
 <div class="face front"><img src="assets/ONE.jpeg"><div class="panel-text">Things I Admire About You</div></div>
-<div class="face back"><img src="assets/ONE.jpeg"><div class="panel-text">
-I admire the way you stay kind in a world that isn’t always gentle.
-</div></div></div></div>
+<div class="face back"><img src="assets/ONE.jpeg"><div class="panel-text">Your kindness stays gentle even when the world isn’t.</div></div>
+</div></div>
 
 <div class="panel" id="p4-2"><div class="panel-inner">
 <div class="face front"><img src="assets/TWO.jpeg"><div class="panel-text">Wishes for Your Future</div></div>
-<div class="face back"><img src="assets/TWO.jpeg"><div class="panel-text">
-I hope the years ahead bring you peace and quiet happiness.
-</div></div></div></div>
+<div class="face back"><img src="assets/TWO.jpeg"><div class="panel-text">May life meet you with ease and quiet joy.</div></div>
+</div></div>
 
 <div class="panel" id="p4-3"><div class="panel-inner">
 <div class="face front"><img src="assets/THREE.jpeg"><div class="panel-text">Lessons You Inspire</div></div>
-<div class="face back"><img src="assets/THREE.jpeg"><div class="panel-text">
-Softness can be strength. Calm can be powerful.
-</div></div></div></div>
+<div class="face back"><img src="assets/THREE.jpeg"><div class="panel-text">Softness can still be strength.</div></div>
+</div></div>
 
 </div>
 </section>
@@ -238,61 +245,51 @@ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
-function start(){
-bgm.play().catch(()=>{});
-show('screen2');
-}
+function start(){bgm.play().catch(()=>{});show('screen2');}
 
 function setup(panels,next,delay){
 let c=0;
 panels.forEach(p=>{
 p.onclick=()=>{
 if(p.classList.contains('flipped'))return;
-p.classList.add('flipped');
-c++;
-if(c===panels.length){
-setTimeout(()=>show(next),delay);
-}
+p.classList.add('flipped');c++;
+if(c===panels.length){setTimeout(()=>show(next),delay);}
 };
 });
 }
 
-/* ✅ FIXED: correct element references */
-setup([
-  document.getElementById('p2-1'),
-  document.getElementById('p2-2'),
-  document.getElementById('p2-3')
-],'screen3',4000);
+setup([p2-1,p2-2,p2-3],'screen3',4000);
+setup([p4-1,p4-2,p4-3],'screen5',3000);
+screen3.onclick=()=>show('screen4');
 
-setup([
-  document.getElementById('p4-1'),
-  document.getElementById('p4-2'),
-  document.getElementById('p4-3')
-],'screen5',3000);
-
-document.getElementById('screen3').onclick=()=>show('screen4');
-
-let slides=[...document.querySelectorAll('.slide')];
-let si=0;
-
-function nextSlide(){
-let current=slides[si];
-let time=parseInt(current.dataset.time||2500);
+/* slideshow */
+let slides=[...document.querySelectorAll('.slide')],si=0;
+(function next(){
+let cur=slides[si],t=+cur.dataset.time;
 setTimeout(()=>{
-current.classList.remove('show');
+cur.classList.remove('show');
 si=(si+1)%slides.length;
 slides[si].classList.add('show');
-nextSlide();
-},time);
-}
-nextSlide();
+next();
+},t);
+})();
 
+/* text fade loop */
 let lines=[...document.querySelectorAll('.final-line')];
+function textLoop(){
 let d=0;
 lines.forEach(l=>{
 setTimeout(()=>{l.style.opacity=1;l.style.transform='translateY(0)'},d);
-d+=1500;
+d+=1400;
 });
+setTimeout(()=>{
+lines.forEach((l,i)=>{
+setTimeout(()=>l.style.opacity=0,i*600);
+});
+},d+1200);
+}
+setInterval(textLoop,12000);
+textLoop();
 </script>
 
 </body>
